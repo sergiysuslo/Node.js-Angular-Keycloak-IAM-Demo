@@ -5,10 +5,30 @@
 </mat-toolbar>
 
 
-<h2>Hallo, {{userInfo.given_name}}</h2>
-
-
+<h1>Hallo, {{userInfo.given_name}}</h1>
+<br>
+<h2 >Your Profile: </h2>
 <mat-card>
+
+  <mat-card>
+    <mat-card-subtitle> First Name</mat-card-subtitle>
+    {{userInfo.given_name}}
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle> Last Name</mat-card-subtitle>
+    {{userInfo.family_name}}
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle> Username</mat-card-subtitle>
+    {{userInfo.preferred_username}}
+  </mat-card>
+  <mat-card>
+    <mat-card-subtitle> Email</mat-card-subtitle>
+    {{userInfo.email}}
+  </mat-card>
+</mat-card>
+
+<!-- <mat-card>
   <p>
     <label for="token">Token</label>
     <textarea id="token" rows="5">{{token}}</textarea>
@@ -20,6 +40,6 @@
 
   <input type="button" value="Update Token" (click)="update()"/>
 
-</mat-card>
+</mat-card> -->
 
 

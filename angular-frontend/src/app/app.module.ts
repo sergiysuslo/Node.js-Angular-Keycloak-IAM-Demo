@@ -13,6 +13,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatListModule} from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -64,7 +67,9 @@ function initializeKeycloak(keycloak: KeycloakService) {
     MatListModule,
     HttpClientModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule
 
   ],
   providers: [

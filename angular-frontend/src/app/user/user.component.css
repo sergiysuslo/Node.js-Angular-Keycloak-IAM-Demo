@@ -2,9 +2,7 @@
   flex: 1 1 auto;
 }
 
-.token{
-  left: 50%;
-	width: 500px;
-	margin-left: -250px;
-	position: relative;
+
+table {
+  width: 100%;
 }

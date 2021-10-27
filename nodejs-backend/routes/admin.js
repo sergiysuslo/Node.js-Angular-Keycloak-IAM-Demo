@@ -36,6 +36,35 @@ async function getRealmUsers() {
     return res.data;
 }
 
+async function deleteUserbyId(id) {
+    console.log(id)
+    var data = qs.stringify({
+        'client_id' : 'admin-cli',
+        'username' : 'admin',
+        'password' : 'admin',
+        'grant_type' : 'password'
+    });
+    var config = {
+        headers:{
+            'Accept' : 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'cache_control' : 'no-cache'
+        }
+    };
+    
+    const response = await axios.post('http://localhost:8080/auth/realms/master/protocol/openid-connect/token',
+                   data, config );
+    var tok = "Bearer " + response.data.access_token;
+    //console.log(tok);
+
+    const res = await axios.delete('http://localhost:8080/auth/admin/realms/Test-Realm/users/'+id, {
+        headers:{
+            'Authorization' : tok,
+            'cache_control' : 'no-cache'
+        }
+    });
+    
+}
 
 router.get('/allUser',keycloak.protect('realm:admin'), async (req, res) => {
    const realmUsers = await getRealmUsers();
@@ -44,12 +73,10 @@ router.get('/allUser',keycloak.protect('realm:admin'), async (req, res) => {
    
 })
 
-router.get('/:id', (req, res) => {
-    res.send("User with ID");
-})
 
-router.get('/:id/edit', (req, res) => {
-    res.send("Edit User with ID");
+router.get('/delete/:id', (req, res) => {
+    return deleteUserbyId(req.params.id);
+    
 })
 
 module.exports = router;

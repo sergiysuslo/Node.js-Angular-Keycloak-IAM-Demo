@@ -21,4 +21,9 @@ export class AppService {
   getUserInfo(): Observable<any> {
     return this.http.get('http://localhost:3000/api/user');
   }
+
+  deleteUser(id:any): Observable<any> {
+    return this.http.get('http://localhost:3000/api/admin/delete/' + id);
+  }
+
 }

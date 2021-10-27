@@ -29,9 +29,6 @@ app.use(keycloak.middleware());
 app.use(keycloak.middleware( {logout: '/logout'}));
 
 
-app.get('/test' ,(req, res) => {
-    res.send({id:1, name: 'blabla'});
-});
 
 // app.get('/logout' ,(req, res) => {
 //     res.redirect('/home');

@@ -7,34 +7,7 @@ const router = express.Router();
 const keycloak = require('../keycloakConfig.js').getKeycloak();
 
 
-//async function getUserInfo() {
-   
-//     var data = qs.stringify({
-//         'client_id' : 'admin-cli',
-//         'username' : 'sergiy',
-//         'password' : 'password',
-//         'grant_type' : 'password'
-//     });
-//     var config = {
-//         headers:{
-//             'Accept' : 'application/json',
-//             'Content-Type': 'application/x-www-form-urlencoded',
-//             'cache_control' : 'no-cache'
-//         }
-//     };
-    
-//     const response = await axios.post('http://localhost:8080/auth/realms/master/protocol/openid-connect/token',
-//                    data, config );
-//     var tok = "Bearer " + response.data.access_token;
-    
-//     const res = await axios.get('http://localhost:8080/auth/realms/NodeJS-Realm/protocol/openid-connect/userinfo', {
-//         headers:{
-//             'Authorization' : tok
-//         }
-//     });
-//     console.log(response);
-//     return tok;
-// }
+
 
 router.get('/',keycloak.protect(), async (req, res)=>{
    
@@ -47,9 +20,9 @@ router.get('/',keycloak.protect(), async (req, res)=>{
 
    res.send(apiCall.data);
 
-    
 
 })
+
 
 // router.get('/logout',keycloak.protect(), async (req, res)=>{
 
