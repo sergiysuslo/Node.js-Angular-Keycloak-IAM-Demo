@@ -1,0 +1,25 @@
+<mat-toolbar color="black" class="toolbar">
+  <span> Keycloak Demo</span>
+  <span class="emptySpace"></span>
+  <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+</mat-toolbar>
+
+
+<h2>Hallo, {{userInfo.given_name}}</h2>
+
+
+<mat-card>
+  <p>
+    <label for="token">Token</label>
+    <textarea id="token" rows="5">{{token}}</textarea>
+  </p>
+  <p>
+    <label for="refreshToken">refreshToken</label>
+    <textarea id="refreshToken" rows="5">{{refreshToken}}</textarea>
+  </p>
+
+  <input type="button" value="Update Token" (click)="update()"/>
+
+</mat-card>
+
+

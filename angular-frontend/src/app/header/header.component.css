@@ -1,0 +1,25 @@
+
+.toolbar{
+  display: flex;
+  align-items: flex-start;
+  padding-top: 16px;
+
+}
+
+
+.title{
+  text-align: justify;
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+
+
+.emptySpace {
+  flex: 1 1 auto;
+}
+
+

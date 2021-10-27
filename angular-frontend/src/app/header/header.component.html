@@ -1,0 +1,17 @@
+<mat-toolbar color="black" class="toolbar">
+  <span> <a routerLink="/" style=" font-size: 1.5em;">Keycloak Demo</a></span>
+  <span class="emptySpace"></span>
+  <mat-accordion class="accordion">
+    <mat-expansion-panel hideToggle class="panel">
+      <mat-expansion-panel-header>
+        <mat-panel-title >
+           <p style="position:auto; font-size: 1.5em;">Login</p>
+        </mat-panel-title>
+
+      </mat-expansion-panel-header>
+      <a mat-button routerLink="/user" routerLinkActive="mat-accent">User Login</a>
+      <br>
+      <a mat-button routerLink="/admin" routerLinkActive="mat-accent">Admin Login</a>
+    </mat-expansion-panel>
+  </mat-accordion>
+</mat-toolbar>
