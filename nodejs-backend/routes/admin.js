@@ -6,8 +6,7 @@ const router = express.Router();
 
 const keycloak = require('../keycloakConfig.js').getKeycloak();
 
-async function getRealmUsers() {
-   
+async function getAdminToken(){
     var data = qs.stringify({
         'client_id' : 'admin-cli',
         'username' : 'admin',
@@ -25,7 +24,12 @@ async function getRealmUsers() {
     const response = await axios.post('http://localhost:8080/auth/realms/master/protocol/openid-connect/token',
                    data, config );
     var tok = "Bearer " + response.data.access_token;
-    //console.log(tok);
+
+    return tok;
+}
+
+async function getRealmUsers() {
+    var tok = await getAdminToken();
 
     const res = await axios.get('http://localhost:8080/auth/admin/realms/Test-Realm/users', {
         headers:{
@@ -37,25 +41,7 @@ async function getRealmUsers() {
 }
 
 async function deleteUserbyId(id) {
-    console.log(id)
-    var data = qs.stringify({
-        'client_id' : 'admin-cli',
-        'username' : 'admin',
-        'password' : 'admin',
-        'grant_type' : 'password'
-    });
-    var config = {
-        headers:{
-            'Accept' : 'application/json',
-            'Content-Type': 'application/x-www-form-urlencoded',
-            'cache_control' : 'no-cache'
-        }
-    };
-    
-    const response = await axios.post('http://localhost:8080/auth/realms/master/protocol/openid-connect/token',
-                   data, config );
-    var tok = "Bearer " + response.data.access_token;
-    //console.log(tok);
+    var tok = await getAdminToken();
 
     const res = await axios.delete('http://localhost:8080/auth/admin/realms/Test-Realm/users/'+id, {
         headers:{
@@ -66,7 +52,7 @@ async function deleteUserbyId(id) {
     
 }
 
-router.get('/allUser',keycloak.protect('realm:admin'), async (req, res) => {
+router.get('/allUser', keycloak.protect('realm:admin'), async (req, res) => {
    const realmUsers = await getRealmUsers();
    
    res.send(realmUsers);
@@ -74,7 +60,7 @@ router.get('/allUser',keycloak.protect('realm:admin'), async (req, res) => {
 })
 
 
-router.get('/delete/:id', (req, res) => {
+router.get('/delete/:id', keycloak.protect('realm:admin'), (req, res) => {
     return deleteUserbyId(req.params.id);
     
 })

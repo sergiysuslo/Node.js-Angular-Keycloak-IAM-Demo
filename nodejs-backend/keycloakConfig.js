@@ -1,7 +1,7 @@
 var session = require('express-session');
 var Keycloak = require('keycloak-connect');
 
-let keycloak;
+var keycloak;
 var memoryStore;
 
 function setKeycloak(){

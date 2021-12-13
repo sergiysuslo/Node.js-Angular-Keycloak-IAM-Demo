@@ -15,8 +15,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
 
-   /* this.appService.getIndex()
-    .subscribe(serverData => this.data = serverData); */
   }
 
 }

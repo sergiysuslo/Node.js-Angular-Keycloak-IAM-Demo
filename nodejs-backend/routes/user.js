@@ -11,9 +11,11 @@ const keycloak = require('../keycloakConfig.js').getKeycloak();
 
 router.get('/',keycloak.protect(), async (req, res)=>{
    
+   var accessToken = req.headers.authorization;
+
    const apiCall = await axios.get('http://localhost:8080/auth/realms/Test-Realm/protocol/openid-connect/userinfo', {
         headers:{
-            'Authorization' : req.headers.authorization,
+            'Authorization' : accessToken,
             'cache_control' : 'no-cache'
         }
     });
@@ -23,42 +25,5 @@ router.get('/',keycloak.protect(), async (req, res)=>{
 
 })
 
-
-// router.get('/logout',keycloak.protect(), async (req, res)=>{
-
-//     refresh_token = req.kauth.grant.refresh_token.token;
-//     access_token = req.kauth.grant.access_token.token;
- 
-//     var data = qs.stringify({
-//         'client_id' : 'microservices-demo',
-//         'refresh_token' : refresh_token
-//     });
-//     var config = {
-//         headers:{
-//            'Authorization' : 'Bearer ' + access_token,
-//            'cache_control' : 'no-cache',
-//             'Content-Type': 'application/x-www-form-urlencoded',
-//             'cache_control' : 'no-cache'
-//         }
-//     };
-//     const response = await axios.post('http://localhost:8080/auth/realms/NodeJS-Realm/protocol/openid-connect/logout',
-//                    data, config );
-//     console.log(response);
-//     res.render('logout');
-// })
-
-// router.get('/user',keycloak.protect(), async (req, res) => {
-//     const userInfo = await getUserInfo();
-//     console.log(userInfo);
-//      res.render('user/user_index',{userInfo});
-// })
-
-// router.get('/:id', (req, res) => {
-//     res.send("User with ID");
-// })
-
-// router.get('/:id/edit', (req, res) => {
-//     res.send("Edit User with ID");
-// })
 
 module.exports = router;

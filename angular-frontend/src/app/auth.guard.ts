@@ -18,7 +18,6 @@ export class AuthGuard extends KeycloakAuthGuard {
     return new Promise(async (res, rej) => {
       var pass:boolean = false;
 
-      // Force the user to log in if currently unauthenticated.
       if (!this.authenticated) {
         await this.keycloak.login(
           {
@@ -39,8 +38,6 @@ export class AuthGuard extends KeycloakAuthGuard {
         }
 
       if(pass === false){
-        /* this.appService.isWarnMessage = true;
-        console.log(this.appService.isWarnMessage); */
         this.keycloak.logout("http://localhost:4200/logout");
       }
 

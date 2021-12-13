@@ -11,9 +11,6 @@ export class AppService {
 
   isWarnMessage:boolean = false;
 
-  /* getUsers(token:any){
-    return this.http.get()
-  } */
   getIndex(): Observable<any> {
     return this.http.get('http://localhost:3000/api/admin/allUser');
   }

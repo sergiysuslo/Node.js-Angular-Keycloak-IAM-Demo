@@ -33,11 +33,4 @@ export class UserComponent implements OnInit {
     this.keycloak.logout("http://localhost:4200/")
   }
 
-  async update() {
-    await this.keycloak.updateToken(-1).then(async () => {
-      this.token = await this.keycloak.getToken()
-    })
-    this.refreshToken = this.keycloak.getKeycloakInstance().refreshToken
-  }
-
 }
